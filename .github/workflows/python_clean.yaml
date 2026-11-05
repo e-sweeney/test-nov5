@@ -1,4 +1,4 @@
-name: Clean_Data
+name: MLWorkflow
 
 on:
   workflow_dispatch
@@ -6,9 +6,26 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./modelCleaning
     steps:
+      - name: setup python3.10
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.10'
+
+      - name: setup code repo
       - uses: actions/checkout@v6
-      - run: |
-          echo ${{github.workspace}}
-          echo $GITHUB_WORKSPACE
-            
+      - name: CleanData
+        run: |
+            pip3 install pandas joblib scikit-learn
+            python cleanData.python
+            ls -l
+      - name: TrainModel
+        run: |
+            python tran_test.py
+            ls -l
+
+          
+
