@@ -8,6 +8,13 @@ jobs:
         steps:
           - name: step1
             run: echo "Hello from job1!"
+          - name: setup python
+            uses: actions/setup-python@v6
+            with:
+              python-version: '3.12'
+          - name: checking version
+            run: python --version
+          
     job2:
         name: job2
         runs-on: windows-latest
