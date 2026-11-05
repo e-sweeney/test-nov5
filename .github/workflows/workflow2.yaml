@@ -23,7 +23,7 @@ jobs:
             ls -l
       - name: TrainModel
         run: |
-            python tran_test.py
+            python train_test.py
             ls -l
 
           
